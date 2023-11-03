@@ -1,0 +1,85 @@
+#!/usr/bin/python3
+import customtkinter as ctk
+from customtkinter import LEFT, RIGHT
+import os
+
+ctk.set_appearance_mode("dark")
+ctk.set_default_color_theme("dark-blue")
+
+mainWindow = ctk.CTk()
+mainWindow.minsize(1500, 5)
+mainWindow.title("Release maker")
+mainWindow.geometry("500x1000")
+mainWindow.maxsize(1500, 5)
+
+def exit_app():
+    exit()
+
+def download_latest():
+    print("DOWNLOADING")
+    os.system('git clone https://github.com/Hanuko33/game_gui')
+    print("DOWNLOADING: DONE")
+
+def build():
+    print("BUIDING")
+    os.system('cd game_gui; mkdir build; cd build; cmake ..; make -j `nproc`')
+    print("BUILDING: DONE")
+
+def update():
+    print("UPDATING")
+    os.system('cd game_gui; git pull')
+    print("UPDATING: DONE")
+
+def test():
+    print("TESTING")
+    print("TESTING: Starting...")
+    os.system('cd game_gui; ./build/game_new')
+    print("TESTING: Done")
+
+def createpkg():
+    print("!REMOVING LAST!")
+    os.system('rm -r pkg')
+    print("Removing:DONE")
+    print("Creating directory")
+    os.system('mkdir pkg')
+    print("Creating directory: DONE")
+    print("COPYING FILES")
+    os.system("cp game_gui/nerdfont.ttf pkg; cp -r game_gui/textures pkg; cp game_gui/build/game_new pkg")
+    print("COPYING FILES: DONE")
+
+def testpkg():
+    print("RUNNING")
+    os.system('cd pkg; ./game_new')
+    print("DONE")
+
+def cleanuppkg():
+    print("removing world files")
+    os.system('cd pkg; rm -r world')
+    print("done")
+
+download_latest_button = ctk.CTkButton(master=mainWindow, text="Download Latest", command=download_latest)
+download_latest_button.pack(anchor="s", side=LEFT)
+
+build_button = ctk.CTkButton(master=mainWindow, text="Build", command=build)
+build_button.pack(anchor="s", side=LEFT)
+
+
+test_button = ctk.CTkButton(master=mainWindow, text="Test Git", command=test)
+test_button.pack(anchor="s", side=LEFT)
+
+create_pkg_button = ctk.CTkButton(master=mainWindow, text="Create Package", command=createpkg)
+create_pkg_button.pack(anchor="s", side=LEFT)
+
+test_pkg_button = ctk.CTkButton(master=mainWindow, text="Test Package", command=testpkg)
+test_pkg_button.pack(anchor="s", side=LEFT)
+
+cleanup_pkg_button = ctk.CTkButton(master=mainWindow, text="Cleanup package", command=cleanuppkg)
+cleanup_pkg_button.pack(anchor="s", side=LEFT)
+
+update_button = ctk.CTkButton(master=mainWindow, text="Update", command=update)
+update_button.pack(anchor="s", side=RIGHT)
+
+exit_button = ctk.CTkButton(master=mainWindow, text="exit", command=exit_app)
+exit_button.pack(anchor="s", side=RIGHT)
+
+mainWindow.mainloop()
