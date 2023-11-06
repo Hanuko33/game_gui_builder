@@ -7,10 +7,10 @@ ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("dark-blue")
 
 mainWindow = ctk.CTk()
-mainWindow.minsize(1500, 5)
+mainWindow.minsize(1200, 50)
 mainWindow.title("Release maker")
-mainWindow.geometry("500x1000")
-mainWindow.maxsize(1500, 5)
+mainWindow.geometry("1200x50")
+mainWindow.maxsize(1200, 50)
 
 def exit_app():
     exit()
