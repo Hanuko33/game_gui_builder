@@ -33,7 +33,7 @@ def update():
 def test():
     print("TESTING")
     print("TESTING: Starting...")
-    os.system('cd game_gui; ./build/game_new')
+    os.system('cd game_gui; ./build/game_gui')
     print("TESTING: Done")
 
 def createpkg():
@@ -44,12 +44,12 @@ def createpkg():
     os.system('mkdir pkg')
     print("Creating directory: DONE")
     print("COPYING FILES")
-    os.system("cp game_gui/nerdfont.ttf pkg; cp -r game_gui/textures pkg; cp game_gui/build/game_new pkg")
+    os.system("cp game_gui/nerdfont.ttf pkg; cp -r game_gui/textures pkg; cp game_gui/build/game_gui pkg")
     print("COPYING FILES: DONE")
 
 def testpkg():
     print("RUNNING")
-    os.system('cd pkg; ./game_new')
+    os.system('cd pkg; ./game_gui')
     print("DONE")
 
 def cleanuppkg():
