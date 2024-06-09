@@ -17,23 +17,23 @@ def exit_app():
 
 def download_latest():
     print("DOWNLOADING")
-    os.system('git clone https://github.com/Hanuko33/game_gui')
+    os.system('git clone https://github.com/Hanuko33/pime')
     print("DOWNLOADING: DONE")
 
 def build():
     print("BUIDING")
-    os.system('cd game_gui; mkdir build; cd build; cmake ..; make -j `nproc`')
+    os.system('cd pime; mkdir build; cd build; cmake ..; make -j `nproc`')
     print("BUILDING: DONE")
 
 def update():
     print("UPDATING")
-    os.system('cd game_gui; git pull')
+    os.system('cd pime; git pull')
     print("UPDATING: DONE")
 
 def test():
     print("TESTING")
     print("TESTING: Starting...")
-    os.system('cd game_gui; ./build/game_gui')
+    os.system('cd pime; ./build/pime')
     print("TESTING: Done")
 
 def createpkg():
@@ -44,12 +44,12 @@ def createpkg():
     os.system('mkdir pkg')
     print("Creating directory: DONE")
     print("COPYING FILES")
-    os.system("cp game_gui/nerdfont.otf pkg; cp game_gui/music.wav pkg; cp game_gui/music2.wav pkg; cp -r game_gui/textures pkg; cp game_gui/build/game_gui pkg")
+    os.system("cp pime/nerdfont.otf pkg; cp pime/music.wav pkg; cp pime/music2.wav pkg; cp -r pime/textures pkg; cp pime/build/pime pkg")
     print("COPYING FILES: DONE")
 
 def testpkg():
     print("RUNNING")
-    os.system('cd pkg; ./game_gui')
+    os.system('cd pkg; ./pime')
     print("DONE")
 
 def cleanuppkg():
